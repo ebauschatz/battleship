@@ -1,8 +1,8 @@
-from data_models.board import Board
+from data_models.personal_board import PersonalBoard
 
 def main():
-    board = Board()
-    print()
+    board = PersonalBoard()
+    board.display_board()
 
 if __name__ == '__main__':
     main()
