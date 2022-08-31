@@ -23,19 +23,19 @@ class Board:
         self.display_board_headers()
         for row_index in range(len(self.grid_rows)):
             output_text = str(self.grid_rows[row_index])
-            board_row = self.grid[0]
+            board_row = self.grid[row_index]
             output_text += self.translate_grid_spaces(board_row)
             print(output_text)
 
     def translate_grid_spaces(self, grid_row):
         output = ''
         for space in grid_row:
-            if space.guess_type == HitType.UNGUESSED:
+            if space.hit_type == HitType.UNGUESSED:
                 output += '⚫'
-            elif space.guess_type == HitType.HIT:
+            elif space.hit_type == HitType.HIT:
                 output += '🔴'
-            elif space.guess_type == HitType.MISS:
+            elif space.hit_type == HitType.MISS:
                 output += '⚪'
-            elif space.guess_type == HitType.SHIP:
+            elif space.hit_type == HitType.SHIP:
                 output += '🚢'
         return output
