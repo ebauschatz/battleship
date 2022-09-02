@@ -1,6 +1,5 @@
 from data_models.game import Game
 
-
 def main():
     game = Game()
     game.run_game()

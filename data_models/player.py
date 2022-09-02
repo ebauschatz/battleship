@@ -1,9 +1,8 @@
-import imp
 from data_models.personal_board import PersonalBoard
 from data_models.opponent_board import OpponentBoard
 from data_models.destroyer import Destroyer
 from data_models.submarine import Submarine
-from data_models.hit_type import HitType
+from data_models.space_marker import SpaceMarker
 from data_models.console_display import ConsoleDisplay
 
 class Player:
@@ -35,7 +34,7 @@ class Player:
         row_index = self.personal_board.grid_rows.index(row)
         ship.current_spaces = self.personal_board.grid[row_index][int(start_column) - 1 : int(end_column)]
         for space in ship.current_spaces:
-            space.hit_type = HitType.SHIP
+            space.space_marker = SpaceMarker.SHIP
 
     def place_ship_in_column(self, ship, column, start_row, end_row):
         column = int(column) - 1
@@ -44,4 +43,4 @@ class Player:
         for row_index in range(start_row_index, end_row_index + 1):
             ship.current_spaces.append(self.personal_board.grid[row_index][column])
         for space in ship.current_spaces:
-            space.hit_type = HitType.SHIP
+            space.space_marker = SpaceMarker.SHIP

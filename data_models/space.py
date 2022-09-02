@@ -1,7 +1,10 @@
-from data_models.hit_type import HitType
+from data_models.space_marker import SpaceMarker
 
 class Space:
     def __init__(self, row, column):
         self.row = row
         self.column = column
-        self.hit_type = HitType.UNGUESSED
+        self.space_marker = SpaceMarker.UNGUESSED
+
+    def register_guess_result(self, space_marker):
+        self.space_marker = space_marker

@@ -1,4 +1,4 @@
-from data_models.hit_type import HitType
+from data_models.space_marker import SpaceMarker
 
 class ConsoleDisplay:
     @staticmethod
@@ -21,13 +21,13 @@ class ConsoleDisplay:
     def translate_board_spaces(grid_row):
         output = ''
         for space in grid_row:
-            if space.hit_type == HitType.UNGUESSED:
+            if space.space_marker == SpaceMarker.UNGUESSED:
                 output += '⚫'
-            elif space.hit_type == HitType.HIT:
+            elif space.space_marker == SpaceMarker.HIT:
                 output += '🔴'
-            elif space.hit_type == HitType.MISS:
+            elif space.space_marker == SpaceMarker.MISS:
                 output += '⚪'
-            elif space.hit_type == HitType.SHIP:
+            elif space.space_marker == SpaceMarker.SHIP:
                 output += '🚢'
         return output
 
@@ -38,3 +38,11 @@ class ConsoleDisplay:
     @staticmethod
     def display_ship_placement_message(name, size):
         print(f'\nPlace your {name}! This ship is {size} spaces long.')
+
+    @staticmethod
+    def display_guess_result(result_text):
+        print(f'\nThat guess resulted in {result_text}!')
+
+    @staticmethod
+    def display_game_winner(player_name):
+        print(f'{player_name} has won!')
