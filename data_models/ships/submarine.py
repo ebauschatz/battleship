@@ -1,4 +1,4 @@
-from data_models.ship import Ship
+from data_models.ships.ship import Ship
 
 class Submarine(Ship):
     def __init__(self):

@@ -1,4 +1,4 @@
-from data_models.space_marker import SpaceMarker
+from data_models.enums.space_marker import SpaceMarker
 
 class Space:
     def __init__(self, row, column):
