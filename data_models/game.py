@@ -1,6 +1,6 @@
 from data_models.console_display import ConsoleDisplay
 from data_models.player import Player
-from data_models.space_marker import SpaceMarker
+from data_models.enums.space_marker import SpaceMarker
 
 class Game:
     def __init__(self):
@@ -8,6 +8,7 @@ class Game:
         self.player_two = Player('Player 2')
 
     def run_game(self):
+        ConsoleDisplay.display_game_welcome()
         self.player_one.place_all_ships()
         self.player_two.place_all_ships()
         self.run_rounds()
@@ -26,10 +27,11 @@ class Game:
                 break
 
     def make_guess(self, guesser, opponent):
-        guess_row = input('Please enter a guess row: ')
-        guess_column = input('Please enter a guess column: ')
+        ConsoleDisplay.display_turn_indicator(guesser.name)
+        guess_row = ConsoleDisplay.get_single_grid_coordinate('Please enter a guess row: ', guesser.opponent_board.row_labels)
+        guess_column = ConsoleDisplay.get_single_grid_coordinate('Please enter a guess column: ', guesser.opponent_board.column_labels)
 
-        guess_row_index = opponent.personal_board.grid_rows.index(guess_row)
+        guess_row_index = opponent.personal_board.row_labels.index(guess_row)
         opponent_personal_board_guess_space = opponent.personal_board.grid[guess_row_index][int(guess_column) - 1]
         guesser_opponent_board_guess_space = guesser.opponent_board.grid[guess_row_index][int(guess_column) - 1]
 
@@ -41,6 +43,7 @@ class Game:
             self.register_guess_result(guesser_opponent_board_guess_space, opponent_personal_board_guess_space, SpaceMarker.MISS, 'a miss')
 
         guesser.opponent_board.display_board()
+        guesser.pass_turn()
 
     def register_guess_result(self, player_space, opponent_space, space_marker, space_marker_text):
         player_space.register_guess_result(space_marker)
