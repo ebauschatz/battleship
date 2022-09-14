@@ -1,4 +1,3 @@
-import imp
 from data_models.boards.board import Board
 from data_models.console_display import ConsoleDisplay
 

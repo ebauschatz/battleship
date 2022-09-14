@@ -8,6 +8,6 @@ class Board:
 
     def initialize_grid(self):
         new_grid = []
-        for row in self.row_labels:
-            new_grid.append([Space(row, column) for column in self.column_labels])
+        for _ in self.row_labels:
+            new_grid.append([Space() for _ in self.column_labels])
         return new_grid
